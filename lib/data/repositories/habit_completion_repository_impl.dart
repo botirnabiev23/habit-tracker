@@ -3,7 +3,9 @@ import 'package:habit_tracker/data/database/habits_completions_dao.dart';
 import 'package:habit_tracker/domain/repositories/habit_completion_repository.dart';
 import 'package:habit_tracker/data/database/app_database.dart' as db;
 import 'package:habit_tracker/domain/entities/habit_completion.dart' as domain;
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: HabitCompletionRepository)
 class HabitCompletionRepositoryImpl implements HabitCompletionRepository {
   final HabitCompletionsDao _dao;
 

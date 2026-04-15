@@ -3,7 +3,9 @@ import 'package:habit_tracker/data/database/app_database.dart' as db;
 import 'package:habit_tracker/data/database/habits_dao.dart';
 import 'package:habit_tracker/domain/entities/habit.dart' as domain;
 import 'package:habit_tracker/domain/repositories/habit_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: HabitRepository)
 class HabitRepositoryImpl implements HabitRepository {
   final HabitsDao _dao;
 
