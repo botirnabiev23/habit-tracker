@@ -1,7 +1,7 @@
 import 'package:habit_tracker/domain/entities/habit.dart';
 
 abstract class HabitRepository {
-  Future<void> create(String name, DateTime createdAt, HabitFrequency frequency);
+  Future<void> create(String name, HabitFrequency frequency);
 
   Future<void> edit(Habit habit);
 

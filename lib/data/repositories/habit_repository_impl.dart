@@ -12,7 +12,7 @@ class HabitRepositoryImpl implements HabitRepository {
   HabitRepositoryImpl(this._dao);
 
   @override
-  Future<void> create(String name, DateTime crateAt, domain.HabitFrequency frequency) async {
+  Future<void> create(String name, domain.HabitFrequency frequency) async {
     await _dao.insertHabit(_toCompanion(name, frequency));
   }
 
