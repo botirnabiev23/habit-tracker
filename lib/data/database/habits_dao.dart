@@ -15,4 +15,7 @@ class HabitsDao extends DatabaseAccessor<AppDatabase> with _$HabitsDaoMixin {
   Future<void> deleteHabit(int id) => (delete(habits)..where((t) => t.id.equals(id))).go();
 
   Future<void> updateHabit(HabitsCompanion habit) => update(habits).replace(habit);
+
+  Future<Habit?> getHabitById(int id) =>
+      (select(habits)..where((t) => t.id.equals(id))).getSingleOrNull();
 }

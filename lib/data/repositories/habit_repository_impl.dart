@@ -39,6 +39,13 @@ class HabitRepositoryImpl implements HabitRepository {
     return list.map((e) => _toDomain(e)).toList();
   }
 
+  @override
+  Future<domain.Habit?> getById(String id) async {
+    final data = await _dao.getHabitById(int.parse(id));
+    if (data == null) return null;
+    return _toDomain(data);
+  }
+
   domain.Habit _toDomain(db.Habit data) {
     return domain.Habit(
       id: data.id.toString(),

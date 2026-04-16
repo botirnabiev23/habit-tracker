@@ -8,4 +8,6 @@ abstract class HabitRepository {
   Future<void> delete(String id);
 
   Future<List<Habit>> getAll();
+
+  Future<Habit?> getById(String id);
 }

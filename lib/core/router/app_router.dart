@@ -3,8 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:habit_tracker/core/di/injection.dart';
 import 'package:habit_tracker/core/router/route_paths.dart';
 import 'package:habit_tracker/presentation/create_habit/pages/create_habit_page.dart';
+import 'package:habit_tracker/presentation/habit_details/cubit/habit_details_cubit.dart';
 import 'package:habit_tracker/presentation/habits/bloc/habits_bloc.dart';
-import 'package:habit_tracker/presentation/habits/pages/habit_detail_page.dart';
+import 'package:habit_tracker/presentation/habit_details/pages/habit_detail_page.dart';
 import 'package:habit_tracker/presentation/habits/pages/habits_page.dart';
 
 final goRouter = GoRouter(
@@ -24,7 +25,10 @@ final goRouter = GoRouter(
       path: RoutePaths.habitDetail,
       builder: (context, state) {
         final id = state.pathParameters['id']!;
-        return HabitDetailPage(habitId: id);
+        return BlocProvider(
+          create: (_) => sl<HabitDetailsCubit>()..getHabitById(id),
+          child: HabitDetailPage(habitId: id),
+        );
       },
     ),
   ],
