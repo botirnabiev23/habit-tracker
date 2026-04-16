@@ -11,6 +11,7 @@ class HabitDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: BlocBuilder<HabitDetailsCubit, HabitDetailsState>(
         builder: (context, state) {
           if (state is HabitDetailsLoading) {
@@ -18,12 +19,19 @@ class HabitDetailPage extends StatelessWidget {
           }
           if (state is HabitDetailsLoaded) {
             final streak = calculateStreak(state.completions);
-            return Column(
-              children: [
-                Text(state.habit.name),
-                Text(state.habit.frequency.name),
-                Text('Стрик: $streak дней'),
-              ],
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(state.habit.name),
+                  const SizedBox(height: 10),
+                  Text(state.habit.frequency.name),
+                  const SizedBox(height: 10),
+                  Text('Стрик: $streak дней'),
+                  const SizedBox(height: 10),
+                ],
+              ),
             );
           }
           return SizedBox.shrink();

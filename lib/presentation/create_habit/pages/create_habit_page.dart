@@ -25,6 +25,7 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: BlocConsumer<CreateHabitCubit, CreateHabitState>(
         listener: (context, state) {
           if (state is CreateHabitSuccess) {
@@ -33,32 +34,35 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
         },
         builder: (context, state) {
           final isLoading = state is CreateHabitLoading;
-          return Column(
-            children: [
-              if (state is CreateHabitError)
-                Text(state.message, style: TextStyle(color: Colors.red)),
-              TextField(controller: textController),
-              const SizedBox(height: 20),
-              DropdownButton<HabitFrequency>(
-                value: selectedFrequency,
-                items: HabitFrequency.values
-                    .map((f) => DropdownMenuItem(value: f, child: Text(f.name)))
-                    .toList(),
-                onChanged: (value) => setState(() => selectedFrequency = value!),
-              ),
-              const SizedBox(height: 20),
-              isLoading
-                  ? CircularProgressIndicator()
-                  : ElevatedButton(
-                      onPressed: () {
-                        context.read<CreateHabitCubit>().createHabit(
-                          textController.text,
-                          selectedFrequency,
-                        );
-                      },
-                      child: Text('Submit'),
-                    ),
-            ],
+          return Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                if (state is CreateHabitError)
+                  Text(state.message, style: TextStyle(color: Colors.red)),
+                TextField(controller: textController),
+                const SizedBox(height: 20),
+                DropdownButton<HabitFrequency>(
+                  value: selectedFrequency,
+                  items: HabitFrequency.values
+                      .map((f) => DropdownMenuItem(value: f, child: Text(f.name)))
+                      .toList(),
+                  onChanged: (value) => setState(() => selectedFrequency = value!),
+                ),
+                const SizedBox(height: 20),
+                isLoading
+                    ? CircularProgressIndicator()
+                    : ElevatedButton(
+                        onPressed: () {
+                          context.read<CreateHabitCubit>().createHabit(
+                            textController.text,
+                            selectedFrequency,
+                          );
+                        },
+                        child: Text('Submit'),
+                      ),
+              ],
+            ),
           );
         },
       ),

@@ -3,10 +3,12 @@ import 'package:habit_tracker/domain/entities/habit.dart';
 import 'package:habit_tracker/domain/entities/habit_completion.dart';
 import 'package:habit_tracker/domain/use_cases/get_completion_use_case.dart';
 import 'package:habit_tracker/domain/use_cases/get_habits_by_id_use_cases.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 part 'habit_details_state.dart';
 
+@injectable
 class HabitDetailsCubit extends Cubit<HabitDetailsState> {
   final GetHabitByIdUseCase _getHabitByIdUseCase;
   final GetCompletionUseCase _getCompletionUseCase;

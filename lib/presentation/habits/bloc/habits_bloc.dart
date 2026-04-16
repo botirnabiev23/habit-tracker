@@ -4,12 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_tracker/domain/entities/habit.dart';
 import 'package:habit_tracker/domain/use_cases/get_all_habits_use_case.dart';
 import 'package:habit_tracker/domain/use_cases/toggle_habit_completion_use_case.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 part 'habits_event.dart';
 
 part 'habits_state.dart';
 
+@injectable
 class HabitsBloc extends Bloc<HabitsEvent, HabitsState> {
   final GetAllHabitsUseCase _getAllHabitsUseCase;
   final ToggleHabitCompletionUseCase _toggleHabitCompletionUseCase;
